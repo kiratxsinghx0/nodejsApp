@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>REGISTER USER</title>
+</head>
+<body>
+<div class="register">
+    <form method="post">
+        <label for = "email" >Email</label>
+        <input type="text" id="email" required>
+        <br>
+        <br>
+        <label for = "userName" >Username</label>
+        <input type="text" id="userName" required>
+        <br>
+        <br>
+        <label for="gender">Choose Your Gender : </label>
+        <select id="gender">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select>
+        <br>
+        <br>
+        <label for = "password" > Password</label>
+		<input type="password" id = "password" required >
+        <br>
+        <br>
+        <label for = "confirmPassword" >Confirm Password</label>
+		<input type="password" id = "confirmPassword" required >
+        <br>
+        <br>
+    </form>
+    <button id="registerUserBtn">Register User</button>
+</div>
+
+<script src="registerAdmin.js" type="text/javascript"></script>
+
+</body>
+</html>
