@@ -1,1 +1,1 @@
-rest api on which you can use  get, post, delete and put commands, used jwt for verification  and used cookies for creating ptotected routes for every request by the user.
+rest api on which you can use  get, post, delete and put commands, used jwt for authorization and used cookies for creating ptotected routes for every request by the user so that only authorized user have access.
