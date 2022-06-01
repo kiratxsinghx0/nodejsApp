@@ -1,0 +1,1 @@
+rest api on which you can use  get, post, delete and put commands, used jwt for verification  and used cookies for creating ptotected routes for every request by the user.
