@@ -1,0 +1,90 @@
+
+.electronicProducts {
+    margin-left: 15px;
+    display: flex;
+    margin-top: 10px;
+    overflow-x: scroll;
+    /* overflow-y: hidden; */
+    background-color: white;
+
+}
+
+.electronicProducts::-webkit-scrollbar {
+    width: 0;
+}
+
+.woodenFurnitureProducts {
+    margin-left: 15px;
+    display: flex;
+    margin-top: 10px;
+    overflow-x: scroll;
+    background-color: white ;
+    border-top : groove;
+}
+
+.woodenFurnitureProducts::-webkit-scrollbar {
+    width: 0;
+}
+
+.singleElectronicProductDiv {
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.singleWFProductDiv {
+    margin-right: 15px;
+    margin-top: 5px;
+}
+.wfPD1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    padding: 20px;
+    padding-bottom: 0px;
+    min-height: 110px;
+
+}
+.wfPD2{
+    padding-bottom: 20px;
+    padding-left: 60px;
+}
+.elecPD1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    padding: 20px;
+    padding-bottom: 0px;
+    min-height: 110px;
+}
+.elecPD2{
+    padding-left: 60px;
+    padding-bottom: 20px;
+    
+}
+.elecProductsImages{
+    /* padding-top: 35px; */
+    padding: 25px;
+    padding-left: 80px;
+    padding-right: 0px;
+    width : 250px;
+    height: 300px;
+}
+.singleElectronicProductDiv{
+    min-width: 350px;
+    min-height: 500px;
+}
+.singleWFProductDiv{
+    min-width: 350px;
+    min-height: 500px;
+}
+.wfProductsImages{
+    padding: 25px;
+    padding-left: 80px;
+    padding-right: 0px;
+    width : 250px;
+    height: 300px;
+} 
+fieldset{
+    border: none;
+    padding-top: 10px;
+}

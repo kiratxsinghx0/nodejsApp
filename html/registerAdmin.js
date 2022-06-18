@@ -44,9 +44,7 @@ function registerNewAdmin() {
     const userName = document.getElementById("userName").value;
     const gender = document.getElementById("gender").value;
     const password = document.getElementById("password").value;
-    const confPassword = document.getElementById("confirmPassword").value;
-
-    const newAdmin = {
+  const newAdmin = {
         email,
         userName,
         gender,
@@ -59,19 +57,21 @@ function registerNewAdmin() {
         sendNewAdminData(resolve, reject, newAdmin, url);
     });
     p1.then((result) => {
+        console.log(result)
         var data = JSON.parse(result.target.responseText);
-        let fullErrMsg = data.err.sqlMessage ;
-        if(fullErrMsg){
-            let errMsg = fullErrMsg.split("key ") ;
-            if(errMsg[1] == "'auth.PRIMARY'"){
+        console.log(data) ;
+        if(data.err){
+        let fullErrMsg = data.err.sqlMessage;
+            let errMsg = fullErrMsg.split("key ");
+            if (errMsg[1] == "'auth.PRIMARY'") {
                 alert("username not avaiable")
             }
-            else if(errMsg[1] == "'auth.idx_email'"){
+            else if (errMsg[1] == "'auth.idx_email'") {
                 alert("email is already registered")
             }
         }
-        else{
-        alert(data.msg) ;
+        else {
+            alert(data.msg);
         }
         // console.log(data.err.sqlMessage) ;
     })

@@ -1,0 +1,26 @@
+a,label{
+      font-family: Georgia, serif;
+}
+.background{
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+      background-color: CFCAE6;
+}
+
+.nav-item3{
+	margin-left: 60vw;
+}
+
+.topDiv{
+      font-size: 25px ;
+
+}
+/* .nav-item4{
+      margin-left: ;
+} */

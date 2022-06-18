@@ -1,0 +1,81 @@
+.box{
+    display: flex;
+    flex-direction: row;
+    background-color: white ;
+    
+}
+.box .leftSideDiv{
+    /* height: 500px; 
+    width: 700px; */
+    margin-left: 120px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-top: 80px;
+    padding-right: 20px;
+    /* border-style: groove; */
+}
+
+.box .centerSideDiv{
+    /* height: 500px;  */
+    width: 350px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-left: 50px;
+    padding-top: 70px;
+    /* border-style: groove; */
+}
+
+/* .box .rightSideDiv{
+    height: 500px; 
+    width: 400px; */
+    /* margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-left: 50px;
+    padding-top: 70px; */
+    /* border-style: groove; */
+/* } */
+
+.p1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    /* text-align: center ; */
+}
+.p2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgba(81, 128, 123, 0.911) ;
+    border-top: groove;
+    border-bottom: groove;
+    padding-top: 45px;
+    padding-bottom: 30px;
+
+}
+
+/* .box .rightSideDiv{
+    margin-left: 120px;
+    margin-top: 80px;
+    /* padding-left : 80px ; */
+    /* border-radius: 25px; */
+  /* border: 2px solid #2a534c;
+  width: 280px;
+  height: 450px;  
+} */ 
+
+/* .addCartDiv{
+    text-align: center;
+    padding-top: 30px;
+    
+} */
+.p4{
+    font-weight: 400;
+    font-size: 20px;
+    border-top: 2px solid #2a534c;
+    border-bottom: 2px solid #2a534c;
+    /* border-radius: 5px; */
+    background-color: #bccfcf;
+    padding: 7px;
+}

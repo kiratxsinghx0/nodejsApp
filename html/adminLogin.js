@@ -1,21 +1,22 @@
 let loginBtn = document.getElementById("loginBtn");
 loginBtn.addEventListener("click", validateLogin);
 
-let registerBtn = document.getElementById("registerBtn");
-registerBtn.addEventListener("click", registerUser);
-
 //redirect to register page
 function registerUser() {
-    var url2 = "http://localhost:8080/resigterAdmin.html"
+    var url2 = "http://localhost:8080/resigterAdmin.html" ;
     location.href = url2;
     console.log("here now");
 }
 //validate login
 function validateLogin() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    var email = document.getElementById("floatingInput").value;
+    var password = document.getElementById("floatingPassword").value;
 
-    if (email == "" || password == "") {
+    var trimEmail = email.trim() ;
+    var trimPassword = password.trim() ;
+    console.log(trimEmail, trimPassword)
+
+    if (trimEmail == "" || trimPassword == "") {
         alert("fill the required info")
     }
     else {
@@ -41,12 +42,15 @@ function sendUserData(resolve, reject, url, user) {
     xhr.send(JSON.stringify(user));
 }
 function sendUser() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("floatingInput").value;
+    const password = document.getElementById("floatingPassword").value;
+
+    var trimEmail = email.trim() ;
+    var trimPassword = password.trim() ;
 
     var user = {
-        email: email,
-        password: password
+        email: trimEmail,
+        password: trimPassword
     }
     console.log(user);
     var url = "http://localhost:5000/api/members/login";
@@ -58,7 +62,7 @@ function sendUser() {
         .then((result) => {
             var data = result.target.responseText;
             data = JSON.parse(data);
-            // console.log(data) ;
+            console.log(data) ;
             if (data.token) {
                 alert(data.msg);
                 var url1 = "http://localhost:8080/form.html"
@@ -69,6 +73,13 @@ function sendUser() {
             }
             // console.log(result.target.response)
         })
-    document.getElementById('email').value = "";
-    document.getElementById('password').value = "";
+    document.getElementById('floatingInput').value = "";
+    document.getElementById('floatingPassword').value = "";
 }
+
+// const ad =document. getElementById("email") ;   
+// ad.addEventListener("input", e =>{
+//     // console.log(e) ;
+//     const value = e.target.value ;
+//     console.log(value) ;
+// })

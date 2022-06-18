@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FORM</title>
+ 	<style>
+ 		body{
+ 			overflow-y : hidden ;
+ 		}
+ 		.left{
+ 			height: 100%;
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  padding-top: 20px;
+ 		}
+ 		.right{
+ 			height: 100%;
+  width: 50%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  padding-top: 20px;
+     overflow : auto;
+ }
+ 		.left{
+ 			left : 0;
+ 		}
+ 		.right{
+ 			right : 0 ;
+ 		}
+ 		p{
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  z-index: 2;
+  background-color: #aae49a;
+  border: 2px solid #4CAF50;
+ 		} 	
+ 		.out{
+ 	 	 	border : 0 ;
+ 	 	 	padding: 10px;
+ 			  background-color: #cae8ca;
+ 			  outline-style: double;
+ 			  position: relative;
+ 		}
+ 	</style>
+
+</head>
+<body>
+<div class="left">
+	<fieldset>
+	<legend>Enter Details</legend>
+<form method="post">
+	<label for="name">Name :</label>
+	<input type="text" id="name" name="name" > 
+	<br>
+	<br>
+	<label for="phoneNumber">Phone Number : </label>
+	<input type="text" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" >
+	<br> 
+	<br>
+ 	<label for="gender">Choose Your Gender : </label>
+	<select name="gender" id="gender" >
+		<option value="female">Female</option>
+		<option value="male">Male</option>
+	</select>
+	<br>
+	<br>
+	<label for="date">Date : </label>
+	<input type="date" id="date" name="date" >
+	<br>
+	<br>
+	<label for="address">Address : </label>
+	<input type="text" id="address" name="address" maxlength="250" >
+	<br>
+	<br>
+	<label for="email">Enter Your Email : </label>
+	<input type="email" name="email" id="email" required>
+	<br>
+	<br>
+	
+ 	 <!-- <button id="btn" onclick="validateForm()"> Save Data</button> -->
+
+</form>
+	<input type="submit" id="btn" onclick="validateForm()" >
+	<!-- <button id="btn"  name="submit" onclick="validateForm()" > submit </button> -->
+</fieldset>
+</div>
+<div class="right">
+ 	<fieldset>
+ 		<legend>User's Details</legend>
+ 		<div id="output">
+ 			<p id="stick">User's Info</p>
+ 	</fieldset>
+ </div>
+<script>
+	let output = document.getElementById("output");
+ 	 	// b.addEventListener("click" , saveData) ;
+ 	function validateForm(){
+ 	 	// var b = document.getElementById("btn") ;
+ 	 	let n = document.getElementById("name") ;
+ 	 	let p = document.getElementById("phoneNumber");
+ 	 	let a = document.getElementById("address");
+ 	 	let e = document.getElementById("email");
+ 	 	if(n.value == "" || p.value == "" || a.value == "" || e.value == "" ) {
+ 	 		alert("fill all the required info");
+ 	}
+ 	else {
+ 	 	 let b = document.getElementById("btn") ;
+ 			saveData() ;
+ 	}
+ }
+ 	
+		function saveData() {
+	let name ,phoneNumber, Gender, date,address,email ;
+	name = document.getElementById('name').value ;
+	phoneNumber= document.getElementById('phoneNumber').value ;
+	Gender = document.getElementById('gender').value ;
+	date = document.getElementById('date').value ;
+	address = document.getElementById('address').value ;
+	email = document.getElementById('email').value ;
+
+	let userRecords = new Array() ;
+	userRecords = JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
+
+	if(userRecords.some((v)=>{
+			return v.email==email
+	})){
+		alert("duplicate email");
+	}
+	else{
+		userRecords.push({
+ 	 	"name": name,
+ 	 	"phoneNumber":phoneNumber,
+ 	 	 "Gender" : Gender,
+ 	 	 "date" :date,
+ 	 	 "address" : address,
+ 			"email" : email
+	})
+		 localStorage.setItem("users",JSON.stringify(userRecords)) ;
+		 location.reload() ;
+	}
+}
+ const data = JSON.parse(localStorage.getItem('users')) ;
+ 		 for(let i = 0 ; i < data.length ; i++) {
+ 		  	const Name = data[i].name ;
+ 		 	const ph = data[i].phoneNumber;
+ 		 	const gender = data[i].Gender ;
+ 		 	const date = data[i].date ;
+ 		 	const address = data[i].address ;
+ 		 	const email = data[i].email ;
+			  console.log(email) ;
+ 		 	const fieldId = email.split("@gmail.com")[0];
+			  console.log(fieldId) ;
+ output.innerHTML += `<fieldset class="out" id = ${fieldId} > Name : ${Name} <br> phoneNumber : ${ph} <br> gender : ${gender} <br> date : ${date}<br>address : ${address} <br> email : ${email} <br> </fieldset> <br>`
+ 		 }
+
+		  let fieldSt = document.getElementById("alex") ;
+		  	console.log(fieldSt)
+		  fieldSt.style["background-color"] = "green";
+            // fieldSt.style["color"] = "white";
+            // el_down.innerHTML = "Style Attribute Changed"
+
+</script>
+</body>
+</html>
