@@ -1,0 +1,32 @@
+/* .cartDiv{
+  float: right;
+} */
+.cartAndLogout{
+    display: flex;
+    justify-content: space-between;
+    float: right;
+    max-width: 300px;
+    padding: 20px;
+    padding-top: 30px;
+    padding-right: 40px;
+    margin-right: 50px;
+   }
+   .homeDiv{
+     padding : 10px;
+     padding-top: 20px;
+     padding-right: 30px;
+     /* background-color: #082225; */
+     /* color: red ; */
+   }
+   
+   .homeSelect{
+    background-color: #2d5a5e;
+      color: white ; 
+      border: none;
+      font-size: 17px;
+   }
+   
+     .homeSelect:hover{
+       background-color: #0f4046;
+     }
+   

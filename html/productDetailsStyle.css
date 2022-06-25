@@ -71,6 +71,7 @@
 }
 .singleElectronicProductDiv{
     min-width: 350px;
+    max-width: 350px;
     min-height: 500px;
 }
 .singleWFProductDiv{
@@ -87,4 +88,17 @@
 fieldset{
     border: none;
     padding-top: 10px;
+}
+
+.clothingProducts{
+    margin-left: 15px;
+    display: flex;
+    margin-top: 10px;
+    overflow-x: scroll;
+    background-color: white ;
+    border-top : groove;
+}
+
+.clothingProducts::-webkit-scrollbar {
+    width: 0;
 }

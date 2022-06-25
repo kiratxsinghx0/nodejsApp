@@ -62,7 +62,9 @@
     border-radius: 25px;
   border: 2px solid #2a534c;
   width: 280px;
-  height: 450px;  
+  min-height: 490px;  
+  max-height: 490px;  
+  margin-bottom: 20px;
 }
 
 .addCartDiv{
@@ -88,3 +90,12 @@
     background-color: #bccfcf;
     padding: 7px;
 } 
+
+.addToCartBtn{
+    background-color: rgb(52, 85, 194);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+
+}

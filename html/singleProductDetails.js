@@ -1,6 +1,20 @@
 const url = window.location.href ;
 const urlArray = url.split("?") ;
-const productId = urlArray[1] ;
+// const productId = urlArray[1] ;
+// console.log(urlArray) ;
+if(urlArray.length > 2){
+    var productId = urlArray[2] ;
+    var userId = urlArray[1] ;
+    var btnId = userId + "?" + productId + "?" +"btn" ;  
+
+}
+else{
+    var productId = urlArray[1] ;
+    var btnId = productId + "?" + "btn" ;
+
+}
+
+console.log(btnId) ;
 
 var leftSideDiv = document.getElementById("leftSide")
 var centerSideDiv = document.getElementById("centerSide")
@@ -44,7 +58,6 @@ async function getProductData2(){
     const productId = productData[0].productId ;
     const productImage = productData[0].productImage ;
     const productImageUrl = "http://localhost:5000/images/" + productImage ; 
-    const btnId = productId + "btn" ;
     const date = Date() ;
     const dateArray = date.split(" ") ;
     const day = dateArray[0]  ;
@@ -76,11 +89,114 @@ async function getProductData2(){
     var btnEvent = document.getElementById(btnId) ;
     btnEvent.addEventListener("click", stopAction );
     function stopAction(event){
+       var btnIdArray = btnId.split("?") ;
+       console.log(btnIdArray) ;
+       if(btnIdArray.length > 2){
+            var sendProductId = btnIdArray[1] ;
+            var sendUserId = btnIdArray[0] ;
+            console.log(btnIdArray)
+            const addToCartDetails ={
+                sendProductId,
+                sendUserId
+            } ;
+            addToCart3(addToCartDetails) ;
+       }
+       else{
+        alert("Please login First")
+        const url = "http://localhost:8080/userOrMerchantLogin.html" ;
+        location.href = url ;
+        var sendProductId = btnIdArray[0] 
+       }
+
         console.log("action stopped") ;
-        event.preventDefault()
+        event.preventDefault() ;
     }
 
 }
+
+    function addToCart1(addToCartDetails){ 
+        let addToCartUrl = "http://localhost:5000/products/AddToCart" ; ;
+        return new Promise((resolve, reject)=>{
+            addToCart2(resolve, reject, addToCartUrl , addToCartDetails) ;
+        })
+    }
+
+
+    function addToCart2(resolve, reject, addToCartUrl, addToCartDetails){
+        function reqListener(data){
+            resolve(data)
+        }
+        function reqError(){
+            reject("product not added to cart")
+        }
+        const xhr = new XMLHttpRequest() ;
+        xhr.open("post", addToCartUrl,true) ;
+        xhr.onload = reqListener ;
+        xhr.onerror = reqError ;
+        xhr.withCredentials = true;
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify(addToCartDetails)) ;
+    }
+
+    async function addToCart3(sendData){
+        const addToCartDetails = sendData ;
+        const result = await addToCart1(addToCartDetails) ;
+        console.log(result) 
+        const data = JSON.parse(result.target.responseText) ;
+        console.log(data) ;
+        if(data.msg == "product added to cart"){
+            console.log("here") ;
+            getAddedProductsToCart5() ;
+            console.log("here2")
+
+        }
+        else{
+            alert(data.msg) ;
+        }
+        // console.log(result) ;
+    }
+
+    
+    //gett products added by user ;
+    var productNumbers1 = document.getElementById("productNumbers") ;
+    function getAddedProductsToCart(requestUrl){
+        return new Promise((resolve, reject)=>{
+            getAddedProductsToCart2(resolve,reject,requestUrl)
+        })
+    }
+    
+    function getAddedProductsToCart2(resolve,reject,requestUrl){
+        function reqListener(data){
+            resolve(data);
+        }
+        function reqError(){
+            reject("error occured")
+        }
+        const xhr = new XMLHttpRequest() ;
+        xhr.open("get",requestUrl,true) ;
+        xhr.onload = reqListener ;
+        xhr.onerror = reqError ;
+        xhr.send(null) ;
+    }
+    
+    async function getAddedProductsToCart5(){
+        console.log("here2")
+        const url = window.location.href ;
+        const urlArray = url.split("?") ;
+        console.log(urlArray) ;
+        if(urlArray.length > 2){
+        const userId = urlArray[1] ;
+        const requestUrl = "http://localhost:5000/products/cartProducts/" + userId ;
+         const data = await getAddedProductsToCart(requestUrl) ;
+         console.log(data) ;
+         const productsArray = JSON.parse(data.target.response) ;
+         console.log(productsArray) ;
+         const productsArrayLength = productsArray.length ;
+         console.log(length) ;
+         productNumbers1.innerHTML = productsArrayLength ;
+        }
+    }
+
 
 
 window.onload  = getProductData2() ;

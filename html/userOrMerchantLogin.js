@@ -31,7 +31,7 @@ function sendUserData(resolve, reject, url, user) {
     // xhr.withCredentials = true ;
     xhr.onload = reqlistener;
     xhr.onerror = reqError;
-    // xhr.withCredentials = true;
+    xhr.withCredentials = true;
     xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.send(JSON.stringify(user));
 }
@@ -60,12 +60,12 @@ function sendUser() {
             alert(data.msg) ;
             if(data.userType == "merchant"){
                 const merchantId = data.id ;
-                const merchantUrl = "http://localhost:8080/merchant/merchantProducts.html/?" + merchantId ;
+                const merchantUrl = "http://localhost:8080/merchant/merchantProducts.html/?" + merchantId + "?" ;
                 location.replace(merchantUrl) ;
             }
             else if(data.userType == "user"){
                 const userId = data.id ;
-                const userUrl = "http://localhost:8080/products.html/?" + userId ;
+                const userUrl = "http://localhost:8080/products.html/?" + userId  + "?";
                 location.replace(userUrl) ; 
             }
         })

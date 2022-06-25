@@ -79,7 +79,9 @@ function sendFilledProductData1(resolve , reject , requestUrl ,productInfo ) {
 
 async function sendFilledProductData2(productData){
     const result = await sendFilledProductData(productData) ;
-    const data = JSON.parse(result.targert.resposeText)
+    console.log(result) ;
+    const data = JSON.parse(result.target.responseText)
+    console.log(data) ;
     if(data.confMsg){
         alert(data.confMsg) ;
     }

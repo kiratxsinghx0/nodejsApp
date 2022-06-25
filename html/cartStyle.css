@@ -1,0 +1,73 @@
+/* .cartDiv{
+  float: right;
+} */
+.cartAndLogout{
+ display: flex;
+ justify-content: space-between;
+ float: right;
+ max-width: 300px;
+ padding: 20px;
+ padding-top: 30px;
+ padding-right: 40px;
+ margin-right: 50px;
+}
+.homeDiv{
+  padding : 10px;
+  padding-top: 20px;
+  padding-right: 30px;
+  /* background-color: #082225; */
+  /* color: red ; */
+}
+
+.homeSelect{
+   background-color: #082225;
+   color: white ; 
+   border: none;
+   font-size: 17px;
+   /* padding: 5px ; */
+   border-radius: 5px;
+}
+
+
+.cartBtn {
+    background-color: #082225;
+    color: white ;
+    text-decoration: none;
+    padding: 12px 20px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    border: none;
+  }
+  
+  .cartBtn:hover {
+    background: rgb(77, 134, 134);
+  }
+  .homeSelect:hover{
+    background: rgb(77, 134, 134);
+
+  }
+  .wishlistBtn:hover{
+    background: rgb(77, 134, 134);
+
+  }
+
+  .cartBtn .productNumbers {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    /* background-color: red; */
+    color: white;
+    font-size : 15px ;
+  }
+
+  .wishlistBtn{
+    background-color: #082225;
+    color: white ;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 10px;
+    border: none;
+  }

@@ -27,12 +27,22 @@ async function getAllProducts() {
     allProducts = data.result;
     const url = window.location.href;
     const urlArray = url.split("?");
+    console.log(urlArray) ;
+    if(urlArray.length > 2) {
+    if (urlArray[2].includes("+")) {
+        keyWordsArray = urlArray[2].split("+");
+    }
+    else {
+        keyWordsArray.push(urlArray[2]);
+    }
+}else{
     if (urlArray[1].includes("+")) {
         keyWordsArray = urlArray[1].split("+");
     }
     else {
         keyWordsArray.push(urlArray[1]);
     }
+}
     const keyWordsLength = keyWordsArray.length;
 
     for (let i = 0; i < keyWordsLength; i++) {
@@ -62,7 +72,16 @@ function showProducts() {
         const priceAfterDiscount = Math.floor(productPrice - (productPrice * productDiscount / 100));
         const productSave = searchResults[0].productPrice - priceAfterDiscount;
         const productImage ="http://localhost:5000/images/" + searchResults[i].productImage;
-        const productUrl = "http://localhost:8080/singleProductDetails.html/?" + productId ;
+        const url = window.location.href;
+        const urlArray = url.split("?");
+        if(urlArray.length > 2) {
+            const userId = urlArray[1] ;
+        var productUrl = "http://localhost:8080/singleProductDetails.html/?" + userId + "?" +  productId ;
+
+        }
+        else{
+        var productUrl = "http://localhost:8080/singleProductDetails.html/?" + productId ;
+        } ;
 
         boxDiv.innerHTML += `<div class= "allSearchResultProductsDetailsDiv"><div class = "imageDiv"><a href=${productUrl} target = "_blank"><img class = "searchResultImages" src= ${productImage} ></a> </div><div class= "searchProductsDetailsDiv"><p class= "SRPD1">${productManufacturer} ${productName} ${productColour}</p><br> <br> <p class ="SRPD2">M.R.P. : <s>Rs.${productPrice}.00</s><br> Price : Rs.${priceAfterDiscount}.00 <br> You Save : Rs.${productSave}.00&nbsp(${productDiscount}%) <br> Inclusive of all taxes <br>Model : ${productName} <br> Brand : ${productManufacturer}<br>Size : ${productMeasurements}</p></div></div>`
     }

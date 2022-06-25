@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CART</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://localhost:8080/searchBarStyle.css">
+    <link rel="stylesheet" href="http://localhost:8080/cartStyle.css">
+    <link rel="stylesheet" href="http://localhost:8080/showCartStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <a class="companyLogo" href="http://localhost:8080/products.html"><img src="http://localhost:5000/images/shopCrazi.jpg" width="100"
+                height="100"></a>
+                <div class="cartAndLogout">
+                <div class="homeDiv" id="homeDiv">
+                    <select id="homeSelect" class="homeSelect">
+                        <option value="shoppingCart">CART</option>
+                        <option value="home">HOME</option>
+                        <option value="wishlist">WISHLIST</option>
+                        <option value="myProfile">MY PROFILE</option>
+                        <option value="logOut">LOG OUT</option>
+                    </select>
+                </div>
+                <div class="wishlistDiv">
+                    <button class="wishlistBtn" id="wishlistBtnId"><i class="fa fa-heart-o"></i></button>
+                </div>
+                <div class="cartDiv" id="cartDiv">
+                <button class="cartBtn" id="cartBtn"><i class="fa fa-shopping-cart" style="font-size:36px"><span class = "productNumbers" id = "productNumbers"></span></i></button>
+                </div>
+            </div>
+        <div class="topHeader">
+            <div class="inputBox">
+                <input type="search" placeholder="Search by productName or Brand" id="searchInput">
+                <div class="searchIcon">
+                   <i class="fa fa-search"></i>
+                </div>
+                <div class="searchDiv" id="searchDiv">
+                    <ul class="searchResult" id="searchResult">
+                    </ul> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="containerBottom" id="containerBottom">
+        <div class="showCartProductsDiv" id="showCartProductsId"></div>
+        <div class="netPriceDiv" id="netPriceDiv"></div>
+    </div>
+    <script src="http://localhost:8080/searchBarNew.js" type="text/javascript"></script>
+    <script src="http://localhost:8080/removeProduct.js" type="text/javascript"></script>
+    <script src="http://localhost:8080/searchProducts/searchProducts.js" type="text/javascript"></script>
+    <script src="http://localhost:8080/showProductAddedToCart.js" type="text/javascript"></script>
+    <script src="http://localhost:8080/addToWishlist.js" type="text/javascript"></script>
+    <script src="http://localhost:8080/dropDown.js" type="text/javascript"></script>
+    <script src="http://localhost:8080/wishlistBtn.js" type="text/javascript"></script>
+
+    
+</body>
+</html>

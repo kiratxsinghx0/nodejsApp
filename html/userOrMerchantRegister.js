@@ -79,7 +79,7 @@ async function sendMerchantData(registerData) {
     }
     else {
         alert(data.msg);
-        const loginUrl = "http://localhost:8080/login_nitish.html" ;
+        const loginUrl = "http://localhost:8080/userOrMerchantlogin.html" ;
         location.replace(loginUrl)
     }
     document.getElementById("email").value = "";
@@ -109,7 +109,7 @@ async function sendUserData(registerData) {
     }
     else {
         alert(data.msg);
-        const loginUrl = "http://localhost:8080/login_nitish.html" ;
+        const loginUrl = "http://localhost:8080/userOrMerchantLogin.html" ;
         location.replace(loginUrl) ;
     }
 

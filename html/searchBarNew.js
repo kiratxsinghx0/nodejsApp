@@ -6,27 +6,35 @@ searchInputProduct.addEventListener("input", searchInput => {
     const value = searchInput.target.value.toLowerCase();
     // console.log(value);
     var searchProducts = [];
-    searchBarSuggestions.innerHTML = "" ;
+    searchBarSuggestions.innerHTML = "";
     for (let i = 0; i < allProducts.length; i++) {
+        const locationurl = window.location.href;
+        const urlArray = locationurl.split("?");
         var productName = allProducts[i].productName;
         let productExists = allProducts[i].productName.toLowerCase();
         if (productExists.includes(value)) {
             if (searchProducts.length < 5) {
-                if (value !== " " && value !== "") {        
+                if (value !== " " && value !== "") {
                     let productId = allProducts[i].productId;
-                    let url = "http://localhost:8080/singleProductDetails.html/?" + productId ;
+                    if(urlArray.length > 2) {
+                        const userId = urlArray[1];
+                        var url = "http://localhost:8080/singleProductDetails.html/?" + userId + "?" +  productId;
+                    }
+                    else{
+                    var url = "http://localhost:8080/singleProductDetails.html/?" + productId;
+                    }
                     searchProducts.push(allProducts[i].productId);
                     searchBarSuggestions.innerHTML += `<li><i class="fa fa-search"></i><a href=${url} target = "_blank">${productName}</a></li>`
+                }
             }
         }
     }
-}
-    for(let i = 0 ; i < allProducts.length ; i++){
+    for (let i = 0; i < allProducts.length; i++) {
         let productExists = allProducts[i].productName.toLowerCase();
-     if(value !== " " && value !== "" && !productExists.includes(value) && searchProducts.length == 0){
-        searchBarSuggestions.innerHTML = `<li><i class="fa fa-search"></i><a href=nowhere target = "_blank" id = notFound>product not available</a></li>`
-    }    
-}
+        if (value !== " " && value !== "" && !productExists.includes(value) && searchProducts.length == 0) {
+            searchBarSuggestions.innerHTML = `<li><i class="fa fa-search"></i><a href=nowhere target = "_blank" id = notFound>product not available</a></li>`
+        }
+    }
 });
 
 

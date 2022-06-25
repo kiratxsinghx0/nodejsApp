@@ -9,6 +9,7 @@ var newValue;
 
 function result(event) {
     value = event.target.value.toLowerCase();
+    console.log(value) ;
 }
 
 function getSearchProducts(event) {
@@ -50,7 +51,16 @@ function getSearchProducts(event) {
         if(serachKeyWords.includes("+")){
             serachKeyWords = serachKeyWords.slice(0, -1) ;
         }
+        const getUrl = window.location.href ;
+        const urlArray = getUrl.split("?") ;
+        console.log(urlArray) ;
+        if(urlArray.length > 2){
+            const userId = urlArray[1] ;
+            var url = "http://localhost:8080/searchProducts/searchProducts.html/?"  + userId + "?" + serachKeyWords
+        }else{
+        
         var url = "http://localhost:8080/searchProducts/searchProducts.html/?" + serachKeyWords ;
+        }
         location.href = url;
     }
 }

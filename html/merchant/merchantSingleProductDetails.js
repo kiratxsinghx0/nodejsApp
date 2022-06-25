@@ -1,6 +1,6 @@
 const url = window.location.href ;
 const urlArray = url.split("?") ;
-const productId = urlArray[1] ;
+const productId = urlArray[2] ;
 
 var leftSideDiv = document.getElementById("leftSide")
 var centerSideDiv = document.getElementById("centerSide")

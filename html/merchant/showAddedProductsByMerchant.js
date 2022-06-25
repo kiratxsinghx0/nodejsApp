@@ -32,20 +32,21 @@ async function getAddedProducts2(){
     console.log(productDetails) ;
     console.log("ok") ;
     for(let i = 0; i < productDetails.length ; i++){
-        // console.log(here) ;
-    const productName = productDetails[0].productName ;
-    const productPrice = productDetails[0].productPrice ;
-    const productDiscount = productDetails[0].productDiscount ;
-    const productManufacturer = productDetails[0].productManufacturer ;
-    const productColour = productDetails[0].productColour ;
-    const productMeasurements = productDetails[0].productMeasurements ;
+    const productName = productDetails[i].productName ;
+    console.log(productName) ;
+    const merchantId = productDetails[i].merchantId ;
+    const productPrice = productDetails[i].productPrice ;
+    const productDiscount = productDetails[i].productDiscount ;
+    const productManufacturer = productDetails[i].productManufacturer ;
+    const productColour = productDetails[i].productColour ;
+    const productMeasurements = productDetails[i].productMeasurements ;
     const priceAfterDiscount = Math.floor(productPrice - (productPrice * productDiscount / 100) );
-    const productSave = productDetails[0].productPrice - priceAfterDiscount ;
+    const productSave = productDetails[i].productPrice - priceAfterDiscount ;
     const productEmi = Math.floor(priceAfterDiscount / 12)
-    const productId = productDetails[0].productId ;
+    const productId = productDetails[i].productId ;
     // const productImage = productDetails[0].productImage ;
     const productImage ="http://localhost:5000/images/" + productDetails[i].productImage;
-    const productUrl = "http://localhost:8080/merchant/merchantSingleProductDetails.html/?" + productId ;
+    const productUrl = "http://localhost:8080/merchant/merchantSingleProductDetails.html/?" + merchantId + "?" + productId ;
 
     showAddedProductsDiv.innerHTML += `<div class= "allAddedProductsDetailsDiv"><div class = "addedProductsimageDiv"><a href=${productUrl} target = "_blank"><img class = "addedProductsImages" src= ${productImage} ></a> </div><div class= "addedProductsDetailsDiv"><p class= "APD1">${productManufacturer} ${productName} ${productColour}</p><br> <br> <p class ="APD2">M.R.P. : <s>Rs.${productPrice}.00</s><br> Price : Rs.${priceAfterDiscount}.00 <br> You Save : Rs.${productSave}.00&nbsp(${productDiscount}%) <br> Inclusive of all taxes <br>Model : ${productName} <br> Brand : ${productManufacturer}<br>Size : ${productMeasurements}</p></div></div>`
     }

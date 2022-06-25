@@ -130,10 +130,10 @@ router.delete("/:id", verification, (req, res) => {   //delete member
 	const sql = 'DELETE FROM merchant WHERE id = ?'
 	db.query(sql, id, (err, result) => {
 		if (err) {
-			res.send("error occured during deletion", err)
+			res.status(400).json({ msg : "error occured during deletion", err })
 		}
 		else {
-			res.send(result);
+			res.status(200).send(result);
 			console.log("result", result)
 		}
 	})
@@ -159,6 +159,7 @@ router.post("/login", (req, res) => {
 				console.log(result) ;
 				if(checkPassword == true){
 				var orgUser = result[0];
+				console.log(orgUser)
 				console.log(orgUser, "using form as an admin");
 				jwt.sign({ orgUser }, JWTSecretKey, (err, token) => {
 					if (err) {
@@ -304,7 +305,7 @@ router.post('/registerUser', (req, res) => {
 });
 
 
-router.post("/userOrMerchantLogin" , (req,res)=>{
+router.post("/userOr/MerchantLogin" , (req,res)=>{
 	const email = req.body.email ;
 	const enteredPassword = req.body.password ;
 	const sql = `CALL sp_getPassword ( ? , @pass , @getUserType, @getId)` ;
@@ -343,22 +344,65 @@ router.post("/userOrMerchantLogin" , (req,res)=>{
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+router.post("/userOrMerchantLogin" , (req,res)=>{
+	const email = req.body.email ;
+	const enteredPassword = req.body.password ;
+	const sql = `CALL sp_getPassword ( ? , @pass , @getUserType, @getId)` ;
+	const sql2 = `SELECT @pass , @getUserType , @getId`  ;
+	db.query(sql, email , (err, result) =>{
+		if(err){
+			console.log( "eerr1",err) ;
+		}
+		else{
+			console.log("reuslt1",result) ;
+		}
+	})
+	db.query( sql2 , (err, result) =>{
+		if(err){
+			res.status(400).json({msg : "error occured"})
+			console.log("err2",err) ;
+		}
+		else{
+			console.log(result) ;
+			const userType = result[0]["@getUserType"] ;
+			const realPassword = result[0]["@pass"] ;
+			const id = result[0]["@getId"]
+			console.log(realPassword)
+			if(realPassword == enteredPassword){
+				const orgUser = {
+					email,
+					realPassword 
+				} ;
+				jwt.sign({ orgUser }, JWTSecretKey, (err, token) => {
+					if (err) {
+						res.json({ msg: "error occured during generating key", err });
+					}
+					else {
+						const cookieConfig = {
+							httpOnly: true, // to disable accessing cookie via client side js
+							secure: true, // to force https (if you use it)
+							maxAge: 10000000, // ttl in seconds (remove this option and cookie will die when browser is closed)
+							signed: true // if you use the secret with cookieParser
+						};
+						res.cookie("token", token, cookieConfig);
+						// console.log(req.cookies);
+				res.status(200).json({msg : "welcome to SHOPCRAZI" , userType , id })
+				console.log("cookie created")
+					
+						// res.set("Authorization" , "Bearer " + token).json({ msg: "email and password does match", token, });
+					}
+				})
+			}
+				else if(!realPassword){
+					res.status(400).json({msg : "User Does not exists"})
+				}
+				else if(realPassword != enteredPassword){
+					res.status(400).json({msg : "Incorrect Password"})
+				}
+		}
+	})
+	
+});
 
 
 
